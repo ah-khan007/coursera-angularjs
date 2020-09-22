@@ -1,28 +1,28 @@
-<html lang="en" ng-app="NarrowItDownApp" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<!doctype html>
+<html lang="en" ng-app="NarrowItDownApp">
+  <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body>
-    <div class="container ng-scope" ng-controller="NarrowItDownController as list">
+    <div class="container" ng-controller="NarrowItDownController as list">
       <h1>Narrow Down Your Chinese Menu Choice</h1>
 
       <div class="form-group">
-        <input type="text" ng-model="list.searchTerm" placeholder="search term" class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+        <input type="text" ng-model="list.searchTerm" placeholder="search term" class="form-control">
       </div>
       <div class="form-group narrow-button">
         <button class="btn btn-primary" ng-click="list.searchItems();">Narrow It Down For Me!</button>
       </div>
       <div>
-        <found-items items="list.found" on-remove="list.removeItem(index)" class="ng-isolate-scope"><ul>
-  <!-- ngRepeat: item in list.items -->
-</ul></found-items>
-        <!-- ngIf: list.nothingFound -->
+        <found-items items="list.found" on-remove="list.deleteItem(index)"></found-items>
+        <span class="nothing" ng-if="list.nothingFound">Nothing Found.</span>
       </div>
     </div>
-  
-
-</body></html>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

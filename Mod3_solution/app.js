@@ -5,9 +5,9 @@
   .controller("NarrowItDownController", NarrowItDownController)
   .service("MenuSearchService", MenuSearchService)
   .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
-  .directive('foundItems', FoundItemsDirective);
+  .directive('foundItems', FoundItems);
   
-  function FoundItemsDirective() {
+  function FoundItems() {
     var ddo = {
       templateUrl: 'foundItems.html',
       scope: {
@@ -33,41 +33,35 @@
         list.found = response;
         list.nothingFound = (list.found.length === 0);
       })
-      .catch(function (error) {
-        console.log('something went wrong: ' + error)
-      });
     };
 
-    list.removeItem = function (index) {
-      MenuSearchService.removeItem(index);
+    list.deleteItem = function (index) {
+      MenuSearchService.deleteItem(index);
     };
   };
   
   MenuSearchService.$inject = ["$http", "ApiBasePath"];
   function MenuSearchService($http, ApiBasePath) {
-    var service = this;
+    var findIt = this;
 
-    service.getMatchedMenuItems = function (searchTerm) {
+    findIt.getMatchedMenuItems = function (searchTerm) {
       return $http({
         method: "GET",
         url: (ApiBasePath + "/menu_items.json")
       }).then(function (result) {
         if (searchTerm === "") {
-          service.foundItems = [];
+          findIt.foundItems = [];
         } else {
-          service.foundItems = result.data.menu_items.filter( 
+          findIt.foundItems = result.data.menu_items.filter( 
             item => item.description.toLowerCase().includes(searchTerm.toLowerCase())
           );
         }
-        return service.foundItems;
-      })
-      .catch(function (error) {
-        console.log('something went wrong: ' + error)
-      });
+        return findIt.foundItems;
+      })  
     };
 
-    service.removeItem = function (index) {
-      service.foundItems.splice(index, 1);
+    findIt.deleteItem = function (index) {
+      findIt.foundItems.splice(index, 1);
     };
   };
   
