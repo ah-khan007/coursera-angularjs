@@ -1,0 +1,61 @@
+body {
+  font-size: 1.4em;
+}
+
+#gap {
+  margin: 5px;
+  padding: 10px;
+}
+
+ #mainMenu {
+  margin-left: 20px;
+  font-weight: bolder;
+  font-size: 20px;
+  
+
+}
+#homeItems {
+  font-weight: bolder;
+  font-size: 20px;
+  position: relative;
+  bottom: 575px;
+}
+
+#submenu {
+  font-weight: bolder;
+  font-size: 20px;
+  position: relative;
+}
+
+#mainMenu:hover {
+  background-color: #0f0;
+  color: white;
+  cursor: pointer;
+
+}
+#homeItems:hover {
+  background-color: #0f0;
+  color: white;
+  cursor: pointer;
+
+}
+#submenu:hover {
+  background-color: #0f0;
+  color: white;
+  cursor: pointer;
+
+}
+
+li {
+  color: green;
+
+  
+}
+
+li[ui-sref]:hover {
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #f00;
+
+}
